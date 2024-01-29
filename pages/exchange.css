@@ -1,0 +1,118 @@
+body{
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(29,46,100,1) 32%, rgba(62,77,151,1) 100%);
+    background-repeat: no-repeat;
+}
+
+nav {
+    margin: 20px 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+nav h1, .footer2 h1{
+    flex: 3;
+    font-size: 35px;
+    margin-left:60px ;
+}
+nav h1 a{
+    text-decoration: none;
+    color: #D5AEEA;
+}
+
+ul  , .footer2 ul{
+    display: flex;
+    flex: 6;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style-type: none;
+    margin-top: 10px;
+    padding: 0;
+    overflow: hidden;
+
+}
+ul li a  , .footer2 ul li a{
+    display: block;
+    text-decoration: none;
+    color: white;
+    font-size: 0.8rem;
+}
+ul li a:hover , .footer2 ul li a:hover{
+    color: #D5AEEA;
+}
+
+
+.exchange-section {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #e3cdef ;
+}
+
+.heading{
+    font-size: 50px;
+}
+
+.crypto-selection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    color: #ddd;
+}
+
+input, select {
+    width: 280px;
+    padding: 8px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+.amount-input{
+    margin-bottom: 10px;
+}
+.exchange-details p{
+    color: #D5AEEA;
+    line-height: 15px;
+}
+.exchange-btn {
+    background-color: #31a035;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.exchange-btn:hover {
+    background-color: #3ac53f;}
+
+.additional-info {
+    margin-top: 20px;
+    color: #e3cdef;
+}
+
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #000000;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+footer h1{
+    color: #D5AEEA;
+}
