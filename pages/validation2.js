@@ -33,7 +33,6 @@ function validation2() {
     }
 
   
-    alert("Form Submitted Successfully");
 
     return true;
 

@@ -19,13 +19,29 @@
 </head>
 
 <body>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Process registration form
+
+    // Retrieve data from the submitted form
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+        // Store user information in a file (for simplicity)
+        $user_data = "$email:$password\n";
+        file_put_contents("users.txt", $user_data, FILE_APPEND | LOCK_EX);
+
+        // Display a success message
+        echo "<script>alert('Registered Successfully');</script>";
+}
+?>
     <div class="nav">
         <h1><a href="../index.html" style="text-decoration: none;">TradeX</a></h1>
     </div>
     <div class="container">
 
         <div class="container3 ">
-            <form onsubmit=" return validation()" id="myform"
+            <form method="POST" action="" onsubmit=" return validation()" id="myform"
                 class="form d-flex flex-column justify-content-center align-items-start  rounded px-5 py-4 glowing-border">
                 <h1 class="mb-4">Sign Up</h1>
                 <div class="mb-4">
@@ -41,7 +57,7 @@
                 </div>
                 <div class="mb-4">
                     <label for="exampleInputPassword1" class="form-label w-125">Password</label>
-                    <input type="password" class="form-control" id="pass" size="30">
+                    <input type="password" class="form-control" id="pass" name="password" size="30">
                     <span class="text-warning " id="password"></span>
                 </div>
                 <div class="mb-4">
@@ -54,6 +70,7 @@
                     <input type="tel" class="form-control" id="mobile" size="30">
                     <span class="text-warning " id="mobileNumber"></span>
                 </div>
+
 
                 <input type="submit" name="submit" value="Submit" class="btn btn-light" autocomplete="off"
                     onclick="return validation()">

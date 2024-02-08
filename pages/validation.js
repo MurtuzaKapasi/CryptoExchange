@@ -66,8 +66,6 @@ function validation() {
         mobileSpan.innerHTML ="";
     }
   
-    alert("Form Submitted Successfully");
 
-    return true;
 
 }
