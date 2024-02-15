@@ -20,21 +20,40 @@
 
 <body>
 
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Process registration form
 
+
+
+<?php
+// Initialize an empty array to store user data
+$users = array();
+
+// Check if the users.txt file exists, and if so, load existing users into the array
+$user_file = "users.txt";
+if (file_exists($user_file)) {
+    $user_data = file($user_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    $users = array_merge($users, $user_data);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve data from the submitted form
     $email = $_POST["email"];
     $password = $_POST["password"];
-        // Store user information in a file (for simplicity)
-        $user_data = "$email:$password\n";
-        file_put_contents("users.txt", $user_data, FILE_APPEND | LOCK_EX);
 
+    // Check if the email already exists in the array
+    
+        // Add the new user to the array
+        $users[] = "$email:$password";
+
+        // Store user information in the users.txt file
+        file_put_contents($user_file, implode("\n", $users) . "\n", LOCK_EX);
         // Display a success message
         echo "<script>alert('Registered Successfully');</script>";
+    
 }
 ?>
+
+<!-- Your HTML code for the sign-up form goes here -->
+
     <div class="nav">
         <h1><a href="../index.html" style="text-decoration: none;">TradeX</a></h1>
     </div>

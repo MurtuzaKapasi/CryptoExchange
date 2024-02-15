@@ -5,12 +5,9 @@ function validation2() {
     var email = document.getElementById("email").value;
     var pass = document.getElementById("pass").value;
 
-
     var emailSpan = document.getElementById("emailid");
     var passwordSpan = document.getElementById("password");
 
-    
-    
     if (email === "" ) {
         emailSpan.innerHTML = " ** Please fill the Email";
         return false;

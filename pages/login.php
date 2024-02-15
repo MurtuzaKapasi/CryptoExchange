@@ -19,33 +19,39 @@
 </head>
 
 <body>
-    <?php
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Process login form
-        $email = $_POST["email"];
-        $password = $_POST["password"];
 
-        $user_data  =file_get_contents("users.txt");
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-        if(strpos($user_data, $email) !== false && strpos($user_data, $password) !== false){
-            echo "<script>alert('Login successful. Welcome, $username!'); window.location.href = '../../Ass1/index.html';</script>";
-        }
-        else{
-            echo "<script> alert('Invalid username or password'); </script>";
-        }
+    $users = array(
+        'user@example.com' => 'password1',
+        'murtuza@gmail.com' => '123456',
+        'manoj@gmaail.com' => '1234567',
 
-       
+    );
+
+    if (isset($users[$email]) && $users[$email] === $password) {
+        header('Location: ../index.html');
+        exit();
+    } else {
+        echo "<script>alert(\"Invalid email or password.\");</script>";
     }
+    
+}
+?>
 
-    ?>
+<!-- Your HTML code for the login form goes here -->
+
     <div class="nav">
         <h1><a href="../index.html" style="text-decoration: none;">TradeX</a></h1>
     </div>
     <div class="container">
 
         <div class="container3 ">
-            <form  method="POST" action="" onsubmit=" return validation2()" id="myform" 
+            <form  method="POST" action="login.php" onsubmit=" return validation2()" id="myform" 
                 class="form d-flex flex-column justify-content-center align-items-start  rounded px-5 py-4 glowing-border">
                 <h1 class="mb-4">Login</h1>
 
@@ -57,7 +63,7 @@
                 </div>
                 <div class="mb-4">
                     <label for="exampleInputPassword1" class="form-label w-125">Password</label>
-                    <input type="password" class="form-control" id="pass" size="30">
+                    <input type="password" class="form-control" name="password" id="pass" size="30">
                     <span class="text-warning " id="password"></span>
                 </div>
 
