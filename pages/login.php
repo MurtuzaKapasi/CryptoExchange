@@ -20,34 +20,33 @@
 
 <body>
 
-
+<!-- By default input array is created to login -->
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
-
+    $flag = false;
     $users = array(
         'user@example.com' => 'password1',
         'murtuza@gmail.com' => '123456',
-        'manoj@gmaail.com' => '1234567',
+        'monika@gmail.com' => '123456',
 
     );
 
     if (isset($users[$email]) && $users[$email] === $password) {
-        header('Location: ../index.html');
-        exit();
+        echo "<script>alert(\"Login Successful.\");</script>";
+        $flag = true;
     } else {
         echo "<script>alert(\"Invalid email or password.\");</script>";
     }
-    
+    if ($flag)
+        header('Location: ../index.html');
 }
 ?>
 
 <!-- Your HTML code for the login form goes here -->
 
-    <div class="nav">
-        <h1><a href="../index.html" style="text-decoration: none;">TradeX</a></h1>
-    </div>
+    
     <div class="container">
 
         <div class="container3 ">
@@ -76,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
 
-        <img src="../assets/homepage.png" alt="image">
+        <!-- <img src="../assets/homepage.png" alt="image"> -->
     </div>
 
     <script src="./validation2.js"></script>

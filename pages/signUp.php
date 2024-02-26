@@ -22,7 +22,7 @@
 
 
 
-
+<!-- Entry is working, but login through user.txt is not -->
 <?php
 // Initialize an empty array to store user data
 $users = array();
@@ -54,9 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!-- Your HTML code for the sign-up form goes here -->
 
-    <div class="nav">
-        <h1><a href="../index.html" style="text-decoration: none;">TradeX</a></h1>
-    </div>
+    
     <div class="container">
 
         <div class="container3 ">
@@ -100,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
         </div>
-        <img src="../assets/homepage.png" alt="image">
+        <!-- <img src="../assets/homepage.png" alt="image"> -->
     </div>
 
     <script src="./validation.js"></script>
