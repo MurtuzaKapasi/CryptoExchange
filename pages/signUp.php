@@ -17,53 +17,32 @@
     </script>
     <title>Sign Up</title>
 </head>
-
 <body>
-
-
 
 <!-- Entry is working, but login through user.txt is not -->
 <?php
-// Initialize an empty array to store user data
-$users = array();
-
-// Check if the users.txt file exists, and if so, load existing users into the array
-$user_file = "users.txt";
-if (file_exists($user_file)) {
-    $user_data = file($user_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-    $users = array_merge($users, $user_data);
-}
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve data from the submitted form
-    $email = $_POST["email"];
+    // Process registration form
+    $username = $_POST["email"];
     $password = $_POST["password"];
 
-    // Check if the email already exists in the array
-    
-        // Add the new user to the array
-        $users[] = "$email:$password";
+    // Store user information in a file (for simplicity)
+    $user_data = "$username:$password\n";
+    file_put_contents("users.txt", $user_data, FILE_APPEND | LOCK_EX);
 
-        // Store user information in the users.txt file
-        file_put_contents($user_file, implode("\n", $users) . "\n", LOCK_EX);
-        // Display a success message
-        echo "<script>alert('Registered Successfully');</script>";
-    
+    echo "<h1 style='text-align:center ; color:green ; '  > Registration successful. </h1>";
 }
 ?>
 
-<!-- Your HTML code for the sign-up form goes here -->
-
     
     <div class="container">
-
         <div class="container3 ">
             <form method="POST" action="" onsubmit=" return validation()" id="myform"
                 class="form d-flex flex-column justify-content-center align-items-start  rounded px-5 py-4 glowing-border">
                 <h1 class="mb-4">Sign Up</h1>
                 <div class="mb-4">
                     <label for="user" class="form-label">Username: </label>
-                    <input name="name" type="text" class="form-control" id="name" size="30">
+                    <input name="username" type="text" class="form-control" id="name" size="30">
                     <span class="text-warning " id="username"></span>
                 </div>
                 <div class="mb-4">
@@ -98,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
         </div>
-        <!-- <img src="../assets/homepage.png" alt="image"> -->
+        <img src="../assets/homepage.png" alt="image">
     </div>
 
     <script src="./validation.js"></script>

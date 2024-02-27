@@ -21,28 +21,36 @@
 <body>
 
 <!-- By default input array is created to login -->
+
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $flag = false;
-    $users = array(
-        'user@example.com' => 'password1',
-        'murtuza@gmail.com' => '123456',
-        'monika@gmail.com' => '123456',
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Process login form
+    $username = $_POST["email"];
+    $password = $_POST["password"];
 
-    );
+    // Read user information from the file (for simplicity)
+    $user_data = file("users.txt", FILE_IGNORE_NEW_LINES);
 
-    if (isset($users[$email]) && $users[$email] === $password) {
-        echo "<script>alert(\"Login Successful.\");</script>";
-        $flag = true;
-    } else {
-        echo "<script>alert(\"Invalid email or password.\");</script>";
+    // Check if the username and password match
+    $credentials_matched = false;
+
+    foreach ($user_data as $line) {
+        list($stored_username, $stored_password) = explode(':', $line);
+
+        if ($username === $stored_username && $password === $stored_password) {
+            $credentials_matched = true;
+            break;
+        }
     }
-    if ($flag)
-        header('Location: ../index.html');
+
+    if ($credentials_matched) {
+        echo "<h2 style='text-align:center ; color:green' >Login Successful, Welcome $username! </h2> <a href='../index.html' style='text-align:center ; color:white ; text-decoration:none'>Go to Home</a>";
+    } else {
+        echo "<h4 style='text-align:center ; color:red' >Invalid username or password. <a href='login.php'>Try again</a> </h4>";
+    }
 }
 ?>
+
 
 <!-- Your HTML code for the login form goes here -->
 
@@ -75,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
 
-        <!-- <img src="../assets/homepage.png" alt="image"> -->
+        <img src="../assets/homepage.png" alt="image">
     </div>
 
     <script src="./validation2.js"></script>
